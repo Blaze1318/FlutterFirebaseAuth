@@ -13,17 +13,25 @@ class AuthService
  }
 
   //TODO: sign in with email and pass
-  Future signinWithEmailAndPassword() async
+  Future signinWithEmailAndPassword(String email,String password) async
   {
     try{
-
+      UserCredential credential = await  _auth.signInWithEmailAndPassword(email: email, password: password);
+      User user = credential.user;
+      return _userFromFirebase(user);
     }catch(e)
     {
-
+      print(e.toString());
+      return null;
     }
   }
 
-
+   //TODO: Setting auth stream
+  Stream<Users> get user{
+   return _auth.authStateChanges()
+       //.map((User user) => _userFromFirebase(user));
+    .map((_userFromFirebase)); //the commented code is implied
+  }
   //TODO:Sign in anonmonously
   Future signinAnon() async{
     try{
@@ -42,13 +50,16 @@ class AuthService
     }
   }
   //TODO: register with email and password
-  Future registerWithEmailAndPassword() async
+  Future registerWithEmailAndPassword(String email,String password) async
   {
     try{
-
+      UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+      User user = result.user;
+      return _userFromFirebase(user);
     }catch(e)
     {
-
+        print(e.toString());
+        return null;
     }
   }
 
@@ -56,11 +67,11 @@ class AuthService
   Future signOut() async
   {
     try{
-
+     return await _auth.signOut();
     }
     catch(e)
     {
-
+      print(e.toString());
     }
   }
 }
