@@ -10,7 +10,6 @@ class Wrapper extends StatelessWidget {
 
     //accessing user data from provider on the main dart file
     final user = Provider.of<Users>(context);
-    print(user);
 
     //return either home or authenticate widget
     if(user == null)
