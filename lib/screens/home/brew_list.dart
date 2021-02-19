@@ -13,7 +13,7 @@ class _BrewListState extends State<BrewList> {
 
   @override
   Widget build(BuildContext context) {
-    final brews =  Provider.of<List<Brews>>(context);
+    final brews =  Provider.of<List<Brews>>(context) ?? [];
 
    // print(brews.docs);
    /* brews.forEach((element) {
