@@ -43,6 +43,12 @@ class _SignInState extends State<SignIn> {
         ],
       ),
       body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/coffee_bg.png"),
+                fit: BoxFit.cover
+            )
+        ),
         padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 50),
         child: Form(
           key: _formKey,
@@ -63,7 +69,7 @@ class _SignInState extends State<SignIn> {
                 onChanged: (val){
                     setState(() => password = val);
                 },
-                decoration: inputTextField.copyWith(hintText: 'Passoword'),
+                decoration: inputTextField.copyWith(hintText: 'Password'),
               ),
               SizedBox(height:20.0),
               RaisedButton(
